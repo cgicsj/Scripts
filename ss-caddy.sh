@@ -18,9 +18,9 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 #设置caddy 和 shadowsocks-libev配置文件
-mkdir -p /root/compose/caddy /root/compose/shadowsocks-libev
+mkdir -p /root/compose
 
-cat >/root/compose/caddy/mycaddyfile <<EOF 
+cat >/root/compose/mycaddyfile <<EOF 
 $URL:443 {
     tls $EMAIL
     proxy / https://www.bing.com
@@ -31,7 +31,7 @@ $URL:443 {
 }
 EOF
 
-cat >/root/compose/shadowsocks-libev/config.json <<EOF
+cat >/root/compose/config.json <<EOF
 {
     "server":"127.0.0.1",
     "server_port":9000,
