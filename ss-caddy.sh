@@ -1,7 +1,7 @@
 #设置域名，SSL证书邮箱，SS密码
-URL=ny.bestss.xyz
-EMAIL=ny@bestss.xyz
-SSPASSWORD=helloworld123
+URL=web.example.com
+EMAIL=web@example.com
+SSPASSWORD=Password
 
 #开启bbr
 echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
@@ -9,7 +9,8 @@ echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
 sysctl -p
 
 #下载docker环境
-apt install -y curl
+apt-get install -y curl
+apt-get install -y socat
 curl -sSL https://get.docker.com/ | sh
 
 #安装docker-compose
@@ -17,12 +18,22 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
+
+#获取证书
+mkdir -p /root/compose
+
+curl https://get.acme.sh | sh
+/root/.acme.sh/acme.sh --issue -d $URL --standalone
+/root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/$URL.key --fullchain-file /root/compose/$URL.cer
+
+
+
 #设置caddy 和 shadowsocks-libev配置文件
 mkdir -p /root/compose
 
 cat >/root/compose/mycaddyfile <<EOF 
 $URL:443 {
-    tls $EMAIL
+    tls /root/compose/$URL.cer /root/compose/$URL.key
     proxy / https://www.bing.com
     proxy /ray 127.0.0.1:9000 {
         websocket
