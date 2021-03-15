@@ -16,21 +16,14 @@ curl -sSL https://get.docker.com/ | sh
 #安装docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-docker-compose --version
-
 
 #获取证书
 mkdir -p /root/compose
-
 curl https://get.acme.sh | sh
 /root/.acme.sh/acme.sh --issue -d $URL --standalone
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/$URL.key --fullchain-file /root/compose/$URL.cer
 
-
-
 #设置caddy 和 shadowsocks-libev配置文件
-mkdir -p /root/compose
-
 cat >/root/compose/mycaddyfile <<EOF 
 $URL:443 {
     tls /root/compose/$URL.cer /root/compose/$URL.key
@@ -77,7 +70,6 @@ services:
         - /root/compose/config.json:/etc/shadowsocks-libev/config.json
       network_mode: "host"
 EOF
-
 
 #启动docker
 docker-compose -f /root/compose/docker-compose.yml up -d
