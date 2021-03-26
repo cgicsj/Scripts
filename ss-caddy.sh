@@ -24,7 +24,7 @@ curl https://get.acme.sh | sh
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/$URL.key --fullchain-file /root/compose/$URL.cer
 
 #设置caddy 和 shadowsocks-libev配置文件
-cat >/root/compose/mycaddyfile <<EOF 
+cat >/root/compose/Caddyfile <<EOF 
 $URL:443 {
     tls /root/compose/$URL.cer /root/compose/$URL.key
     proxy / https://www.bing.com
@@ -59,7 +59,7 @@ services:
       container_name: caddy
       restart: always
       volumes:
-         - /root/compose/mycaddyfile:/root/caddy/Caddyfile
+         - /root/compose:/root/caddy
       network_mode: "host"
 
     shadowsocks:
