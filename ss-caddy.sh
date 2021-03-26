@@ -18,15 +18,15 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compo
 chmod +x /usr/local/bin/docker-compose
 
 #获取证书
-mkdir -p /root/compose
+mkdir -p /root/compose/caddy
 curl https://get.acme.sh | sh
 /root/.acme.sh/acme.sh --issue -d $URL --standalone
-/root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/$URL.key --fullchain-file /root/compose/$URL.cer
+/root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/caddy/$URL.key --fullchain-file /root/compose/caddy/$URL.cer
 
 #设置caddy 和 shadowsocks-libev配置文件
-cat >/root/compose/Caddyfile <<EOF 
+cat >/root/compose/caddy/Caddyfile <<EOF 
 $URL:443 {
-    tls /root/compose/$URL.cer /root/compose/$URL.key
+    tls /root/compose/caddy/$URL.cer /root/compose/caddy/$URL.key
     proxy / https://www.bing.com
     proxy /ray 127.0.0.1:9000 {
         websocket
@@ -59,7 +59,7 @@ services:
       container_name: caddy
       restart: always
       volumes:
-         - /root/compose:/root/caddy
+         - /root/compose/caddy:/root/caddy
       network_mode: "host"
 
     shadowsocks:
