@@ -25,7 +25,7 @@ curl https://get.acme.sh | sh
 
 #设置caddy 和 shadowsocks-libev配置文件
 cat >/root/compose/caddy/Caddyfile <<EOF 
-$URL:443 {
+$URL:12366 {
     tls /root/caddy/$URL.cer /root/caddy/$URL.key
     proxy / https://www.bing.com
     proxy /ray 127.0.0.1:9000 {
