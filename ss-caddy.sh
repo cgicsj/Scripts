@@ -20,7 +20,7 @@ chmod +x /usr/local/bin/docker-compose
 #获取证书
 mkdir -p /root/compose/caddy
 curl https://get.acme.sh | sh
-/root/.acme.sh/acme.sh --issue -d $URL --standalone
+/root/.acme.sh/acme.sh --set-default-ca  --server letsencrypt --issue -d $URL --standalone
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/caddy/$URL.key --fullchain-file /root/compose/caddy/$URL.cer
 
 #设置caddy 和 shadowsocks-libev配置文件
