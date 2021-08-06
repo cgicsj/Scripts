@@ -2,6 +2,8 @@
 URL=web.example.com
 EMAIL=web@example.com
 SSPASSWORD=Password
+PORT=443
+METHOD=aes-256-gcm
 
 #开启bbr
 echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
@@ -23,16 +25,46 @@ curl https://get.acme.sh | sh
 /root/.acme.sh/acme.sh --set-default-ca  --server letsencrypt --issue -d $URL --standalone
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/compose/caddy/$URL.key --fullchain-file /root/compose/caddy/$URL.cer
 
-#设置caddy 和 shadowsocks-libev配置文件
+#设置caddy,index.html 和 shadowsocks-libev配置文件
 cat >/root/compose/caddy/Caddyfile <<EOF 
-$URL:12366 {
+$URL:$PORT {
     tls /root/caddy/$URL.cer /root/caddy/$URL.key
-    proxy / https://www.bing.com
+    log /root/caddy/caddy.log
+    root /root/caddy
+    index index.html
     proxy /ray 127.0.0.1:9000 {
         websocket
         header_upstream -Origin
     }
 }
+EOF
+
+cat >/root/compose/caddy/index.html <<EOF
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 EOF
 
 cat >/root/compose/config.json <<EOF
@@ -41,7 +73,7 @@ cat >/root/compose/config.json <<EOF
     "server_port":9000,
     "password":"$SSPASSWORD",
     "timeout":300,
-    "method":"aes-256-gcm",
+    "method":"$METHOD",
     "fast_open":false,
     "nameserver":"8.8.8.8",
     "mode":"tcp_and_udp",
