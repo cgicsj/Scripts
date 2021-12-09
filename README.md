@@ -1,5 +1,5 @@
 # Scripts
-1、InstallNET.sh：用法：bash <(wget --no-check-certificate -qO- 'https://github.com/cgicsj/Scripts/raw/main/InstallNET.sh') -d 10 -v 64 -p "自定义root密码" -port "自定义ssh端口".  默认密码： MoeClub.org
+1、InstallNET.sh：用法：bash <(wget --no-check-certificate -qO- 'https://github.com/cgicsj/Scripts/raw/main/InstallNET.sh') -d 10 -v 64 -p "自定义root密码" -port "自定义ssh端口".  默认密码： MoeClub.org，甲骨文机器加 “-firmware  额外的驱动支持”
 
 2、ss-caddy.sh：用法： wget --no-check-certificate -O ss-caddy.sh https://github.com/cgicsj/Scripts/raw/main/ss-caddy.sh && chmod a+x ss-caddy.sh   ，
 需要手动配置服务器域名，自动证书邮箱，SS密码。默认采用CADDY自动申请证书。
