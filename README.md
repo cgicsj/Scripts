@@ -8,8 +8,11 @@
 3、Vaultwarden_docker.sh：用法：  wget --no-check-certificate -O Vaultwarden_docker.sh https://github.com/cgicsj/Scripts/raw/main/Vaultwarden_docker.sh && bash chmod a+x  Vaultwarden_docker.sh  ,需手动配置域名，端口号，SSL证书。
 
 4、申请SSL证书：
+URL=xxx.xx.com 
+echo 'XX.XX.XX.XX  '$URL >> /etc/hosts ;
 apt-get install -y socat ;
 apt-get install -y curl ;
 curl https://get.acme.sh | sh ;
+/root/.acme.sh/acme.sh --register-account -m $URL;
 /root/.acme.sh/acme.sh --issue -d $URL --standalone ;
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/$URL.key --fullchain-file /root/$URL.cer ;
