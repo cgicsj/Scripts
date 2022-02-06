@@ -16,3 +16,15 @@ curl https://get.acme.sh | sh ;
 /root/.acme.sh/acme.sh --register-account -m $URL;
 /root/.acme.sh/acme.sh --issue -d $URL --standalone ;
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/$URL.key --fullchain-file /root/$URL.cer ;
+
+
+
+5、优化TCP
+wget -O tools.sh "http://sh.nekoneko.cloud/tools.sh" && chmod +x tools.sh && ./tools.sh
+
+6、流媒体解锁检测
+bash <(curl -L -s https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh)
+
+
+7、三网回程路由检测
+curl https://raw.githubusercontent.com/zhucaidan/mtr_trace/main/mtr_trace.sh|bash
