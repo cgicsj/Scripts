@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "servers": [
+        {
+            "id": "27b8a625-4f4b-4428-9f0f-8a2317db7c79",
+            "remarks": "美国",
+            "server": "usa.fastway.top",
+            "server_port": 443,
+            "password": "Hello123World",
+            "method": "aes-256-gcm",
+            "plugin": "v2ray-plugin",
+            "plugin_opts": "tls;host=usa.fastway.top;path=/ray",
+            "group": "fastway.top"
+        },
+        {
+            "id": "7842c068-c667-41f2-8f7d-04feece3cb67",
+            "remarks": "台湾",
+            "server": "tw.fastway.top",
+            "server_port": 443,
+            "password": "Hello123World",
+            "method": "aes-256-gcm",
+            "plugin": "v2ray-plugin",
+            "plugin_opts": "tls;host=tw.fastway.top;path=/ray",
+            "group": "fastway.top"
+        },
+        {
+            "id": "100af63c-d8cf-4f4f-8ade-280ec7b632d0",
+            "remarks": "广州-美国",
+            "server": "us.fastway.top",
+            "server_port": 12321,
+            "password": "Hello123World",
+            "method": "aes-256-gcm",
+            "plugin": "",
+            "plugin_opts": "",
+            "group": "fastway.top"
+        },
+        {
+            "id": "364c90bb-78fc-40d2-88b4-eab64c5845a1",
+            "remarks": "西安-德国",
+            "server": "de.fastway.top",
+            "server_port": 12315,
+            "password": "Hello123World",
+            "method": "aes-256-gcm",
+            "plugin": "",
+            "plugin_opts": "",
+            "group": "fastway.top"
+        }
+
+    ]
+}
