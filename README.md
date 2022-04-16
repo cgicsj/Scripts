@@ -2,7 +2,7 @@
 1、InstallNET.sh：用法：bash <(wget --no-check-certificate -qO- 'https://github.com/cgicsj/Scripts/raw/main/InstallNET.sh') -d 10 -v 64 -p "自定义root密码" -port "自定义ssh端口".  默认密码： MoeClub.org，甲骨文机器加 “-firmware  额外的驱动支持”
 
 2、ss-caddy.sh：用法： wget --no-check-certificate -O ss-caddy.sh https://github.com/cgicsj/Scripts/raw/main/ss-caddy.sh && chmod a+x ss-caddy.sh   ，
-需要手动配置服务器域名，自动证书邮箱，SS密码。默认采用CADDY自动申请证书。若需服务器使用IPV6，在config.json中增加"ipv6_first": true。
+需要手动配置服务器域名，自动证书邮箱，SS密码。默认采用CADDY自动申请证书。若需服务器使用IPV6，在config.json中增加"ipv6_first": true。采用Shadowsocks-libev + v2ray-plugin over websocket (HTTP) + TLS + caddy + CDN，客户端插件选项填 tls;host=mydomain.me;path=/ray
 
 
 3、Vaultwarden_docker.sh：用法：  wget --no-check-certificate -O Vaultwarden_docker.sh https://github.com/cgicsj/Scripts/raw/main/Vaultwarden_docker.sh && bash chmod a+x  Vaultwarden_docker.sh  ,需手动配置域名，端口号，SSL证书。
@@ -28,6 +28,7 @@ bash <(curl -L -s https://raw.githubusercontent.com/lmc999/RegionRestrictionChec
 
 7、三网回程路由检测
 curl https://raw.githubusercontent.com/zhucaidan/mtr_trace/main/mtr_trace.sh|bash
+
 
 
 8、一键WARP
