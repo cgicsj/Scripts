@@ -37,5 +37,5 @@ wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/kkkyg/CFwarp/CFwarp.s
 
 9、测速脚本
 wget -qO- --no-check-certificate https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash
--------------------------------------------
+*********************************************
 wget -qO- bench.sh | bash
