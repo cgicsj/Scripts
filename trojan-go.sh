@@ -6,7 +6,6 @@ TROJAN_PASSWORD=Password
 PORT=8443
 REMOTE_PORT=443
 WSSTATUS=true  #ws is true,tcp is false
-TYPE=ws    #ws of tcp
 WSPATH=videos
 REMARKS=trojan-us
 
