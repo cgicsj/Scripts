@@ -13,11 +13,12 @@ trojan-go.sh：用法： wget --no-check-certificate -O trojan-go.sh https://git
 
 4、申请SSL证书：
 URL=xxx.xx.com ;
+EMAIL=admin@$URL;
 echo 'XX.XX.XX.XX  '$URL >> /etc/hosts ;
 apt-get install -y socat ;
 apt-get install -y curl ;
 curl https://get.acme.sh | sh ;
-/root/.acme.sh/acme.sh --register-account -m $URL;
+/root/.acme.sh/acme.sh --register-account -m $EMAIL;
 /root/.acme.sh/acme.sh --issue -d $URL --standalone ;
 /root/.acme.sh/acme.sh --installcert -d $URL --key-file /root/$URL.key --fullchain-file /root/$URL.cer ;
 
